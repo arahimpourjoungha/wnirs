@@ -1,0 +1,10 @@
+Subject,Session,Date,Weekday,OnMed,MedTiming,TaskOrder,Valid,Note,TasksDone,RestDone
+90001,1,05-Jan-2026,Mon,OFF,,NBack>SkipX>Flanker,1,,3,1
+90001,2,08-Jan-2026,Thu,ON,After med,NBack>SkipX>Flanker,1,,3,1
+90001,3,09-Jan-2026,Fri,CBT,,NBack>SkipX>Flanker,1,,3,1
+90001,,10-Jan-2026,Sat,OFF,,NBack>SkipX>Flanker,0,Incomplete,3,1
+90001,5,12-Jan-2026,Mon,ON,Before med,NBack>SkipX>Flanker,1,,3,1
+90001,6,13-Jan-2026,Tue,OFF,,NBack>SkipX>Flanker,1,,3,1
+90001,7,14-Jan-2026,Wed,OFF,,NBack>SkipX>Flanker,1,,3,1
+90001,8,15-Jan-2026,Thu,OFF,,NBack>SkipX>Flanker,1,,3,1
+90001,10,16-Jan-2026,Fri,OFF,,NBack>SkipX>Flanker,1,2 sessions,3,1

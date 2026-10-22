@@ -1,0 +1,9 @@
+Recordings: 11 across 2 subject(s) and 8 session(s).
+Flagged   : 7 (all are still analysed).
+  unfinished file            1
+  log marked incomplete      1
+  log row unnumbered         1
+  no tracksheet row          1
+  medication state unknown   2
+  no behavioural companion   4
+Medication: 2 ON, 7 OFF, 2 unknown.

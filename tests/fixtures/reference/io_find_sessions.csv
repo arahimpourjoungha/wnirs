@@ -1,0 +1,12 @@
+Subject,Session,Task,Format,File,Bytes,Unfinished,RecordedAt,HasBehaviour
+90001,1,Flanker,braingames,90001/Tablet_backup/Fish_SensorData_Session1_90001_20260105_090000.csv,10208,0,2026-01-05 09:00:00,1
+90001,1,GoNogo,braingames,90001/Tablet_backup/SkipX_SensorData_Session1_90001_20260105_092000.csv,10208,0,2026-01-05 09:20:00,1
+90001,1,NBack,braingames,90001/Tablet_backup/NBack_SensorData_Session1_90001_20260105_091000.csv,10208,0,2026-01-05 09:10:00,1
+90001,1,Rest,braingames,90001/Tablet_backup/Rest_SensorData_Session1_90001_20260105_094000_unfinished.csv,10208,1,2026-01-05 09:40:00,1
+90001,2,NBack,braingames,90001/Tablet_backup/NBack_SensorData_Session2_90001_20260108_090000.csv,10208,0,2026-01-08 09:00:00,1
+90001,3,Flanker,braingames,90001/Tablet_backup/Fish_SensorData_Session3_90001_20260109_110000.csv,17008,0,2026-01-09 11:00:00,0
+90001,4,GoNogo,braingames,90001/Tablet_backup/SkipX_SensorData_Session4_90001_20260110_090000.csv,10208,0,2026-01-10 09:00:00,1
+90001,5,NBack,braingames,90001/Tablet_backup/NBack_SensorData_Session5_90001_20260112_090000.csv,10208,0,2026-01-12 09:00:00,0
+90001,8,Flanker,braingames,90001/Tablet_backup/Fish_SensorData_Session8_90001_20260115_090000.csv,10208,0,2026-01-15 09:00:00,0
+90001,9,Flanker,braingames,90001/Tablet_backup/Fish_SensorData_Session9_90001_20260116_090000.csv,10208,0,2026-01-16 09:00:00,0
+90002,1,NBack,braingames,90002/Brain games/Tablet_backup/NBack_SensorData_Session1_90003_20260106_090000.csv,10208,0,2026-01-06 09:00:00,1

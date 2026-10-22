@@ -1,0 +1,8 @@
+Subject,Session,Task,RecordedAt,TracksheetSession,OnMed,Note,Unfinished,Incomplete,Unnumbered,NoTracksheetRow,NoMedState,ShortForTask,NoBehaviour
+90001,1,Rest,05-Jan-2026 09:40:00,1,OFF,,1,0,0,0,0,0,0
+90001,3,Flanker,09-Jan-2026 11:00:00,3,CBT,,0,0,0,0,1,0,1
+90001,4,GoNogo,10-Jan-2026 09:00:00,,OFF,Incomplete,0,1,1,0,0,0,0
+90001,5,NBack,12-Jan-2026 09:00:00,5,ON,,0,0,0,0,0,0,1
+90001,8,Flanker,15-Jan-2026 09:00:00,8,OFF,,0,0,0,0,0,0,1
+90001,9,Flanker,16-Jan-2026 09:00:00,10,OFF,2 sessions,0,0,0,0,0,0,1
+90002,1,NBack,06-Jan-2026 09:00:00,,,,0,0,0,1,1,0,0

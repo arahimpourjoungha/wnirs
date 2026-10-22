@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wnirs"
+version = "0.1.0"
+description = "Dense-sampling wearable fNIRS: I/O, QC, preprocessing, reliability, and on-device learning"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["numpy", "scipy", "pandas", "matplotlib", "openpyxl", "pywavelets", "statsmodels"]
+
+[project.optional-dependencies]
+ml = ["scikit-learn", "torch>=2.2", "jax", "optax", "onnx", "onnxruntime"]
+dev = ["pytest"]
+parity = ["h5py"]
+
+[tool.setuptools.packages.find]
+include = ["wnirs*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.package-data]
+wnirs = ["data/*.csv"]

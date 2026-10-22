@@ -1,0 +1,6 @@
+Stem,Task,AppTask,Kind,Session,Subject,RecordedAt,Unfinished
+NBack_SensorData_Session1_90605_20260805_180557,NBack,NBack,sensor,1,90605,2026-08-05 18:05:57,0
+Fish_BehavioralData_Session13_testuser_0327_20260629_081155,Flanker,Fish,behaviour,13,testuser_0327,2026-06-29 08:11:55,0
+Rest_SensorData_Session22_90590_20260824_083044_unfinished,Rest,Rest,sensor,22,90590,2026-08-24 08:30:44,1
+SkipX_SensorData_Session4_90590_20260706,GoNogo,SkipX,sensor,4,90590,2026-07-06 00:00:00,0
+Fish_SensorData_Session3_90590,Flanker,Fish,sensor,3,90590,,0
