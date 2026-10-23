@@ -67,6 +67,27 @@ class MixedFit:
     converged: bool
 
 
+_MAX_THETA = 1e4
+
+
+def _upper_factor(S: np.ndarray) -> np.ndarray:
+    """Upper Cholesky factor of the fixed-effect cross-product ``X'V^-1 X``.
+
+    The matrix is positive definite in exact arithmetic but is formed as a
+    difference, ``X'X - RZX'RZX``, which cancels badly when the random effects
+    absorb most of the variance. When the plain factorisation fails, the
+    symmetric part is rebuilt from its eigenvalues clipped at a relative floor
+    -- the same matrix up to rounding -- and factorised again.
+    """
+    S = (S + S.T) / 2
+    try:
+        return cholesky(S, lower=False)
+    except np.linalg.LinAlgError:
+        w, V = np.linalg.eigh(S)
+        floor = max(w.max(), 0.0) * S.shape[0] * np.finfo(float).eps
+        return cholesky((V * np.maximum(w, floor)) @ V.T, lower=False)
+
+
 def fit_mixed(y: np.ndarray, X: np.ndarray, terms: Sequence[RandomTerm],
               method: Literal["reml", "ml"] = "reml") -> MixedFit:
     """Fit y = X beta + sum_k Z_k b_k + e.
@@ -101,7 +122,7 @@ def fit_mixed(y: np.ndarray, X: np.ndarray, terms: Sequence[RandomTerm],
         L = cholesky((U.T @ U).toarray() + np.eye(U.shape[1]), lower=True)
         cu = solve_triangular(L, U.T @ y, lower=True)
         RZX = solve_triangular(L, (U.T @ X), lower=True)
-        Rx = cholesky(XtX - RZX.T @ RZX, lower=False)
+        Rx = _upper_factor(XtX - RZX.T @ RZX)
         beta = cho_solve((Rx, False), Xty - RZX.T @ cu)
         delta = solve_triangular(L.T, cu - RZX @ beta, lower=False)
         resid = y - X @ beta - U @ delta
@@ -112,9 +133,12 @@ def fit_mixed(y: np.ndarray, X: np.ndarray, terms: Sequence[RandomTerm],
         return ll, beta, Rx, r2 / n_eff
 
     # Start from independent unit-variance effects; Cholesky diagonals stay
-    # non-negative, which is what lets a variance land exactly on zero.
+    # non-negative, which is what lets a variance land exactly on zero. The
+    # upper bound (a random-effect SD 1e4 times the residual SD) is never a
+    # plausible optimum, but without it a line search can wander to ratios
+    # where the fixed-effect cross-product loses precision entirely.
     res = minimize(lambda th: -solve(th)[0], on_diagonal.astype(float), method="L-BFGS-B",
-                   bounds=[(0.0, None) if d else (None, None) for d in on_diagonal],
+                   bounds=[(0.0, _MAX_THETA) if d else (-_MAX_THETA, _MAX_THETA) for d in on_diagonal],
                    options=dict(ftol=1e-13, gtol=1e-9, maxiter=2000))
     theta = res.x
     ll, beta, Rx, sigma2 = solve(theta)

@@ -339,4 +339,19 @@ def test_gtheory(ses_fx, tag):
     for comp, v in g.var.items():
         assert v == pytest.approx(float(ses_fx[f"sessions__{tag}_{comp}"]), rel=1e-4, abs=1e-8)
     for ours, key in [(g.Rc, "Rc"), (g.R1F, "R1F"), (g.Rc_single, "RcSingle"), (g.R1F_single, "R1FSingle")]:
-        np.testing.assert_allclose(ours, ses_fx[f"sessions__{tag}_{key}"], rtol=1e-5, equal_nan=True)
+        # same tolerance as the components: the REML surface is flat along some
+        # directions, so optimisers agree on the likelihood long before the ratios
+        np.testing.assert_allclose(ours, ses_fx[f"sessions__{tag}_{key}"], rtol=1e-4, equal_nan=True)
+
+
+def test_mixed_survives_near_singular_fixed_effects():
+    """A stepped-wedge fit (period dummies, random intercept and slope) whose
+    fixed-effect cross-product loses positive definiteness to cancellation;
+    the plain Cholesky used to raise LinAlgError on it."""
+    from scipy import sparse
+    from wnirs.analysis.mixed import RandomTerm, fit_mixed
+    d = np.load(FIXTURES / "mixed_near_singular.npz")
+    term = RandomTerm("subject", sparse.csr_matrix(d["Z"]), int(d["n_effects"]))
+    fit = fit_mixed(d["y"], d["X"], [term])
+    assert np.all(np.isfinite(fit.beta)) and np.all(np.isfinite(fit.se))
+    assert fit.sigma2 > 0
